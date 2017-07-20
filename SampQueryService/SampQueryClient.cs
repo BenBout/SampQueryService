@@ -7,8 +7,8 @@ namespace SampQueryService
 {
     public class SampQueryClient
     {
-        public int ReceiveTimeout { get; set; } = 2000;
-        public int SendTimeout { get; set; } = 2000;
+        //public int ReceiveTimeout { get; set; } = 2000;
+        //public int SendTimeout { get; set; } = 2000;
         //public int ListeningPort { get; set; } = 22387;
 
         public Task<T> SendQueryAsync<T>(string ip, int port) where T : IQueryDataResult, new()
