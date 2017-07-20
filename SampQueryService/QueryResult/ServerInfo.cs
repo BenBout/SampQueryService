@@ -14,7 +14,7 @@ namespace SampQueryService.QueryResult
         //public string MapName { get; private set; }
         public string Language { get; private set; }
 
-        public bool Deserialize(byte[] data)
+        public void Deserialize(byte[] data)
         {
             using (MemoryStream stream = new MemoryStream(data))
             {
@@ -39,8 +39,6 @@ namespace SampQueryService.QueryResult
                     //MapName = new string(reader.ReadChars(length));
                 }
             }
-
-            return true;
         }
 
         public char GetOpCode()

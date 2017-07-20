@@ -10,7 +10,7 @@ namespace SampQueryService.QueryResult
 
         public PlayerList() { }
 
-        public bool Deserialize(byte[] data)
+        public void Deserialize(byte[] data)
         {
             var pList = new List<PlayerInfo>();
 
@@ -33,7 +33,6 @@ namespace SampQueryService.QueryResult
             }
 
             Players = pList;
-            return true;
         }
 
         public char GetOpCode()

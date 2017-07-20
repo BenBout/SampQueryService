@@ -3,6 +3,6 @@
     public interface IQueryDataResult
     {
         char GetOpCode();
-        bool Deserialize(byte[] data);
+        void Deserialize(byte[] data);
     }
 }

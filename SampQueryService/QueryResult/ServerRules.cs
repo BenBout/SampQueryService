@@ -14,7 +14,7 @@ namespace SampQueryService.QueryResult
         public string WebUrl { get; set; }
         public ServerTime WorldTime { get; set; }
 
-        public bool Deserialize(byte[] data)
+        public void Deserialize(byte[] data)
         {
             var resultList = new List<Rule>();
 
@@ -63,8 +63,6 @@ namespace SampQueryService.QueryResult
                         break;
                 }
             }
-
-            return true;
         }
 
         public char GetOpCode()
