@@ -56,30 +56,5 @@ namespace SampQueryService
             await query.SendRconAsync(password, command);
             var rPackets = await receivedPacketsTask;
         }
-        /*
-        public async Task<int> PingAsync(IPAddress ip, int port)
-        {
-            var query = new SampQuery(new IPEndPoint(ip, port));
-            var pingWatch = new Stopwatch();
-            pingWatch.Start();
-
-            var receivedPacketsTask = query.ReceiveAsync();
-            var sendQueryTask = await query.SendAsync('p');
-            await receivedPacketsTask;
-
-            pingWatch.Stop();
-            return (int)pingWatch.ElapsedMilliseconds;
-        }
-
-        public Task<int> PingAsync(string ip, int port)
-        {
-            IPAddress cleanIP;
-
-            var isValidIP = IPAddress.TryParse(ip, out cleanIP);
-            if (!isValidIP) throw new FormatException("String ip is not in a valid fromat.");
-
-            return PingAsync(cleanIP, port);
-        }
-        */
     }
 }
