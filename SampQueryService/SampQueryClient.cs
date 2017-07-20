@@ -33,13 +33,12 @@ namespace SampQueryService
             var obj = new T();
 
             var receivedPacketsTask = query.ReceiveAsync();
-            var sendQueryTask = await query.SendAsync(obj.GetOpCode());
-            //await Task.WhenAll(receivedPacketsTask, sendQueryTask);
+            var sendQueryTask = query.SendAsync(obj.GetOpCode());
+            await Task.WhenAll(receivedPacketsTask, sendQueryTask);
 
             var rPackets = await receivedPacketsTask;
 
-            var result = obj.Deserialize(rPackets);
-            if (result == false) obj = default(T);
+            obj.Deserialize(rPackets);
             return obj;
         }
 

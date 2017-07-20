@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace SampQueryService
 {
-
     internal class SampQuery
     {
         private UdpClient _client;
@@ -106,4 +105,3 @@ namespace SampQueryService
         private Task TimeOutAsync() => Task.Delay(1500);
     }
 }
-
