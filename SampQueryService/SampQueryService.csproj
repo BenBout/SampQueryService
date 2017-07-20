@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <RootNamespace>SampQueryClient</RootNamespace>
+    <Authors>Gigi / B.Boutoille</Authors>
+    <Company />
+    <Description>A simple service to query SA-MP servers</Description>
   </PropertyGroup>
 
 </Project>
