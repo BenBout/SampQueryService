@@ -1,16 +1,20 @@
 ﻿using System.IO;
 using System.Collections.Generic;
+using System;
 
 namespace SampQueryService.QueryResult
 {
-    public class PlayerList : IQueryDataResult
+    public class PlayerList : SampQueryResult
     {
-        private readonly char _opCode = 'd';
+        
         public IEnumerable<PlayerInfo> Players;
 
-        public PlayerList() { }
+        public PlayerList()
+        {
+            this.OpCode = 'd';
+        }
 
-        public void Deserialize(byte[] data)
+        public override void Deserialize(byte[] data)
         {
             var pList = new List<PlayerInfo>();
 
@@ -34,11 +38,5 @@ namespace SampQueryService.QueryResult
 
             Players = pList;
         }
-
-        public char GetOpCode()
-        {
-            return _opCode;
-        }
     }
-
 }

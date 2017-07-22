@@ -4,17 +4,20 @@ using System.IO;
 
 namespace SampQueryService.QueryResult
 {
-    public class ServerRules : IQueryDataResult
+    public class ServerRules : SampQueryResult
     {
-        private readonly char _opCode = 'r';
-
         public string MapName { get; set; }
         public float Gravity { get; set; }
         public int Weather { get; set; }
         public string WebUrl { get; set; }
         public ServerTime WorldTime { get; set; }
 
-        public void Deserialize(byte[] data)
+        public ServerRules()
+        {
+            this.OpCode = 'r';
+        }
+
+        public override void Deserialize(byte[] data)
         {
             var resultList = new List<Rule>();
 
@@ -63,11 +66,6 @@ namespace SampQueryService.QueryResult
                         break;
                 }
             }
-        }
-
-        public char GetOpCode()
-        {
-            return _opCode;
         }
     }
 }

@@ -3,9 +3,8 @@ using System.IO;
 
 namespace SampQueryService.QueryResult
 {
-    public class ServerInfo : IQueryDataResult
+    public class ServerInfo : SampQueryResult
     {
-        private readonly char _opCode = 'i';
         public bool Password { get; private set; }
         public int Players { get; private set; }
         public int MaxPlayers { get; private set; }
@@ -14,7 +13,12 @@ namespace SampQueryService.QueryResult
         //public string MapName { get; private set; }
         public string Language { get; private set; }
 
-        public void Deserialize(byte[] data)
+        public ServerInfo()
+        {
+            this.OpCode = 'i';
+        }
+
+        public override void Deserialize(byte[] data)
         {
             using (MemoryStream stream = new MemoryStream(data))
             {
@@ -39,11 +43,6 @@ namespace SampQueryService.QueryResult
                     //MapName = new string(reader.ReadChars(length));
                 }
             }
-        }
-
-        public char GetOpCode()
-        {
-            return _opCode;
         }
     }
 

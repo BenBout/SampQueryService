@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
+using SampQueryService.QueryResult;
 
 namespace SampQueryService
 {
@@ -11,7 +11,7 @@ namespace SampQueryService
         //public int SendTimeout { get; set; } = 2000;
         //public int ListeningPort { get; set; } = 22387;
 
-        public Task<T> SendQueryAsync<T>(string ip, int port) where T : IQueryDataResult, new()
+        public Task<T> SendQueryAsync<T>(string ip, int port) where T : SampQueryResult, new()
         {
             IPAddress cleanIP;
 
@@ -21,19 +21,19 @@ namespace SampQueryService
             return SendQueryAsync<T>(cleanIP, port);
         }
 
-        public Task<T> SendQueryAsync<T>(IPAddress ip, int port) where T : IQueryDataResult, new()
+        public Task<T> SendQueryAsync<T>(IPAddress ip, int port) where T : SampQueryResult, new()
         {
             
             return SendQueryAsync<T>(new IPEndPoint(ip, port));
         }
 
-        public async Task<T> SendQueryAsync<T>(IPEndPoint ipEnd) where T : IQueryDataResult, new()
+        public async Task<T> SendQueryAsync<T>(IPEndPoint ipEnd) where T : SampQueryResult, new()
         {
             var query = new SampQuery(ipEnd);
             var obj = new T();
 
             var receivedPacketsTask = query.ReceiveAsync();
-            var sendQueryTask = query.SendAsync(obj.GetOpCode());
+            var sendQueryTask = query.SendAsync(obj.OpCode);
             await Task.WhenAll(receivedPacketsTask, sendQueryTask);
 
             var rPackets = await receivedPacketsTask;
