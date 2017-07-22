@@ -14,7 +14,6 @@ namespace SampQueryService
         {
             _client = new UdpClient(endPoint.Port);
             _ipEndP = endPoint;
-            //_client.Client.ReceiveTimeout = 5;
         }
 
         // TODO: refactor sendasync & rconasync
@@ -72,15 +71,12 @@ namespace SampQueryService
             var receiveTask = _client.ReceiveAsync();
             var timeoutTask = TimeOutAsync();
             await Task.WhenAny(receiveTask, timeoutTask);
+            _client.Client.Dispose();
 
             if (!receiveTask.IsCompleted) // Timeout
-            {
-                _client.Client.Dispose();
                 return null;
-            }
 
             var packets = receiveTask.Result;
-            _client.Dispose();
             byte[] cleanPackets;
 
             if (packets.Buffer.Length > 11)
