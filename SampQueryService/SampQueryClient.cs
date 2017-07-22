@@ -34,10 +34,11 @@ namespace SampQueryService
 
             var receivedPacketsTask = query.ReceiveAsync();
             var sendQueryTask = query.SendAsync(obj.OpCode);
+
             await Task.WhenAll(receivedPacketsTask, sendQueryTask);
+            var rPackets = receivedPacketsTask.Result;
 
-            var rPackets = await receivedPacketsTask;
-
+            if (rPackets == null) obj.IsCompleted = false;
             obj.Deserialize(rPackets);
             return obj;
         }
