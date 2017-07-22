@@ -12,7 +12,7 @@ namespace SampQueryService.QueryResult
 
         public ServerRules() { this.OpCode = 'r'; }
 
-        public override void Deserialize(byte[] data)
+        internal override void Deserialize(byte[] data)
         {
             var resultList = new List<Rule>();
 

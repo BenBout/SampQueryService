@@ -14,7 +14,7 @@ namespace SampQueryService.QueryResult
             this.OpCode = 'd';
         }
 
-        public override void Deserialize(byte[] data)
+        internal override void Deserialize(byte[] data)
         {
             var pList = new List<PlayerInfo>();
 

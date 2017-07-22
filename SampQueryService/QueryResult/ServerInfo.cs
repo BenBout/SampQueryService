@@ -17,7 +17,7 @@ namespace SampQueryService.QueryResult
             this.OpCode = 'i';
         }
 
-        public override void Deserialize(byte[] data)
+        internal override void Deserialize(byte[] data)
         {
             using (MemoryStream stream = new MemoryStream(data))
             {
