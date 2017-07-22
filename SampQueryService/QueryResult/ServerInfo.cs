@@ -10,7 +10,6 @@ namespace SampQueryService.QueryResult
         public int MaxPlayers { get; private set; }
         public string HostName { get; private set; }
         public string GameModeName { get; private set; }
-        //public string MapName { get; private set; }
         public string Language { get; private set; }
 
         public ServerInfo()
@@ -38,9 +37,6 @@ namespace SampQueryService.QueryResult
 
                     length = reader.ReadInt32();
                     Language = new string(reader.ReadChars(length));
-
-                    //length = reader.ReadInt32();
-                    //MapName = new string(reader.ReadChars(length));
                 }
             }
         }
