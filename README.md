@@ -6,6 +6,9 @@ A simple client service to query SA-MP servers. www.sa-mp.com.
 
 ## Supported platforms
  * all .NET compat with STANDARD 1.4  https://docs.microsoft.com/fr-fr/dotnet/standard/library
+
+## Nuget
+ * https://www.nuget.org/packages/SampQueryService/1.0.1
  
 ## Sample
 ```csharp
