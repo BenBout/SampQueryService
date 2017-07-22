@@ -6,7 +6,6 @@ namespace SampQueryService.QueryResult
     public class ServerRules : SampQueryResult
     {
         public string MapName { get; set; }
-        public float Gravity { get; set; }
         public int Weather { get; set; }
         public string WebUrl { get; set; }
         public ServerTime WorldTime { get; set; }
