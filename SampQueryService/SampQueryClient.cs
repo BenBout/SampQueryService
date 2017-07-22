@@ -38,8 +38,12 @@ namespace SampQueryService
             await Task.WhenAll(receivedPacketsTask, sendQueryTask);
             var rPackets = receivedPacketsTask.Result;
 
-            if (rPackets == null) obj.IsCompleted = false;
-            obj.Deserialize(rPackets);
+            if (rPackets != null)
+            {
+                obj.IsCompleted = true;
+                obj.Deserialize(rPackets);
+            }
+            
             return obj;
         }
 
