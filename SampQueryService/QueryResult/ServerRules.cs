@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace SampQueryService.QueryResult
@@ -12,10 +11,7 @@ namespace SampQueryService.QueryResult
         public string WebUrl { get; set; }
         public ServerTime WorldTime { get; set; }
 
-        public ServerRules()
-        {
-            this.OpCode = 'r';
-        }
+        public ServerRules() { this.OpCode = 'r'; }
 
         public override void Deserialize(byte[] data)
         {
@@ -41,15 +37,23 @@ namespace SampQueryService.QueryResult
                 }
             }
 
-            foreach (var rule in resultList)
+            AssignRulesToProperties(resultList);
+        }
+
+        private void AssignRulesToProperties(IEnumerable<Rule> ruleList)
+        {
+            foreach (var rule in ruleList)
             {
                 switch (rule.Name)
                 {
-                    case "mapname": MapName = rule.Value;
+                    case "mapname":
+                        MapName = rule.Value;
                         break;
-                    case "weather": Weather = int.Parse(rule.Value);
+                    case "weather":
+                        Weather = int.Parse(rule.Value);
                         break;
-                    case "weburl": WebUrl = rule.Value;
+                    case "weburl":
+                        WebUrl = rule.Value;
                         break;
                     case "worldtime":
                         {
