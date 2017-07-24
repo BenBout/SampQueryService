@@ -10,6 +10,11 @@ A simple client service to query SA-MP servers. www.sa-mp.com.
 ## Nuget
  * https://www.nuget.org/packages/SampQueryService/1.0.1
  
+## Installing
+ * To install Pastebin.cs, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)
+
+    PM> Install-Package SampQueryService
+
 ## Sample
 ```csharp
 static async Task SimpleQuery()
