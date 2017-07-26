@@ -7,6 +7,10 @@
     <Company />
     <Description>A simple service to query SA-MP servers</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <PackageProjectUrl>https://github.com/BenBout/SampQueryService</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>

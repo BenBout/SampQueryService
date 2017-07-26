@@ -2,6 +2,8 @@
 using System.Net;
 using System.Threading.Tasks;
 using SampQueryService.QueryResult;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SampQueryService
 {
@@ -74,6 +76,33 @@ namespace SampQueryService
         }
 
         /// <summary>
+        /// Send multiple asynchronous queries to some servers.
+        /// Type param must be an inherits of SampQueryResult 
+        /// return depend from it.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ipEnd">An Ienumerable of ipEnd.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> SendQueryAsync<T>(IEnumerable<IPEndPoint> ipEnd) where T : SampQueryResult, new()
+        {
+            var activeTaskList = new List<Task<T>>();
+
+            foreach (var adress in ipEnd)
+            {
+                var duplicatePorts = ipEnd.Where(i => i.Port == adress.Port);
+                var newQueryTask = SendQueryAsync<T>(adress);
+
+                if (duplicatePorts.Count() > 1)
+                    await newQueryTask;
+
+                activeTaskList.Add(newQueryTask);
+            }
+
+            await Task.WhenAll(activeTaskList);
+            return activeTaskList.Select(p => p.Result);
+        }
+
+        /// <summary>
         /// Send an asynchronous rcon query to the sa-mp server.
         /// </summary>
         /// <param name="ip">The ip.</param>
@@ -101,5 +130,6 @@ namespace SampQueryService
             await query.SendRconAsync(password, command);
             //var rPackets = await receivedPacketsTask;
         }
+
     }
 }
