@@ -6,6 +6,8 @@ A simple client service to query SA-MP servers. www.sa-mp.com.
 
 ## Supported platforms
  * all .NET compat with STANDARD 1.4  https://docs.microsoft.com/fr-fr/dotnet/standard/library
+ * .NET CORE 1.1.
+ * if you want a .net framework <= 46, build the projet  yourself with the correct target framework or contact me.
 
 ## Nuget
  * https://www.nuget.org/packages/SampQueryService/1.0.1
@@ -37,6 +39,18 @@ static async Task SimpleQuery()
 
         foreach (var player in filteredPlayerList)
             Console.WriteLine($"ID: {player.ID} Username: {player.UserName} Ping: {player.ping}");
+    }
+}
+
+static async Task MultipleQueriesWithSameQueryResultType()
+{
+    var ipEndList = new List<IPEndPoint>(); // we suppose a list of 10 ipendpoint.
+    var serverInfoList = await  new SampQueryClient().SendQueryAsync<ServerInfo>(ipEndList);
+
+    foreach (var server in serverInfoList)
+    {
+        if(server.IsCompleted)
+            Console.WriteLine($"Server name: {server.HostName}");
     }
 }
 ```
